@@ -14,6 +14,15 @@ const auth = {
         password: MUX_SECRET_KEY
     }
 };
+const express = require('express');
+
+
+app.set('view engine', 'ejs');
+
+app.get('/watch', (req, res) => {
+    const playbackUrl = "https://stream.mux.com/ZtQc7i8Y1BQuyaTeOk7J27j02QVewYJ009XOrTITz3974.m3u8"; // Replace with your Mux URL
+    res.render('liveStream', { playbackUrl });
+});
 
 // ✅ Create a New Live Stream
 app.get('/create-live-stream', async (req, res) => {
