@@ -30,7 +30,7 @@ app.get('/create-stream', async (req, res) => {
             {
                 playback_policy: ["public"],
                 new_asset_settings: { playback_policy: ["public"] },
-                reconnect_window: 18000 // Keep the stream alive for 30 minutes even after disconnect
+                reconnect_window: 1800 // Keep the stream alive for 30 minutes even after disconnect
             },
             {
                 auth: {
