@@ -14,8 +14,6 @@ const auth = {
         password: MUX_SECRET_KEY
     }
 };
-const express = require('express');
-
 
 app.set('view engine', 'ejs');
 
