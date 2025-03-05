@@ -34,8 +34,8 @@ app.get('/create-stream', async (req, res) => {
             },
             {
                 auth: {
-                    username: MUX_TOKEN_ID,
-                    password: MUX_TOKEN_SECRET
+                    username: MUX_ACCESS_TOKEN_ID,
+                    password: MUX_SECRET_KEY
                 }
             }
         );
