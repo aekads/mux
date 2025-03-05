@@ -16,7 +16,7 @@ const auth = {
 };
 
 // ✅ Create a New Live Stream
-app.post('/create-live-stream', async (req, res) => {
+app.get('/create-live-stream', async (req, res) => {
     try {
         const response = await axios.post('https://api.mux.com/video/v1/live-streams', {
             playback_policy: ['public'],
