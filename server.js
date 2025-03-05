@@ -18,7 +18,7 @@ const auth = {
 app.set('view engine', 'ejs');
 
 app.get('/watch', (req, res) => {
-    const playbackUrl = "https://stream.mux.com/ZtQc7i8Y1BQuyaTeOk7J27j02QVewYJ009XOrTITz3974.m3u8"; // Replace with your Mux URL
+    const playbackUrl = "https://stream.mux.com/G8Qd9BYgs1VaeYAPu002TEufD62zPCiSU00d3OZlSaBCI.m3u8"; // Replace with your Mux URL
     res.render('liveStream', { playbackUrl });
 });
 
