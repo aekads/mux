@@ -23,25 +23,35 @@ app.get('/watch', (req, res) => {
 });
 
 // ✅ Create a New Live Stream
-app.get('/create-live-stream', async (req, res) => {
+app.get('/create-stream', async (req, res) => {
     try {
-        const response = await axios.post('https://api.mux.com/video/v1/live-streams', {
-            playback_policy: ['public'],
-            new_asset_settings: { playback_policy: ['public'] }
-        }, auth);
+        const response = await axios.post(
+            'https://api.mux.com/video/v1/live-streams',
+            {
+                playback_policy: ["public"],
+                new_asset_settings: { playback_policy: ["public"] },
+                reconnect_window: 18000 // Keep the stream alive for 30 minutes even after disconnect
+            },
+            {
+                auth: {
+                    username: MUX_TOKEN_ID,
+                    password: MUX_TOKEN_SECRET
+                }
+            }
+        );
 
-        const stream = response.data.data;
+        const streamData = response.data.data;
         res.json({
-            success: true,
-            stream_key: stream.stream_key,
-            rtmp_url: `rtmp://live.mux.com/app/${stream.stream_key}`,
-            playback_url: stream.playback_ids[0].id
+            message: "Live stream created successfully!",
+            streamKey: streamData.stream_key,
+            playbackId: streamData.playback_ids[0].id,
+            rtmpUrl: "rtmp://live.mux.com/app"
         });
-
     } catch (error) {
-        res.status(500).json({ success: false, error: error.response?.data || error.message });
+        res.status(500).json({ error: error.response?.data || error.message });
     }
 });
+
 
 // ✅ Start the Server
 const PORT = 4000;
